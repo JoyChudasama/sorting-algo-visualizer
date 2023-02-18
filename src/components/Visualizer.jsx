@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react";
-import '../assets/App.scss';
+import "../assets/App.scss";
+import SortBy from "../helper/SortBy";
 
 function Visualizer() {
   const [array, setArray] = useState([]);
+  const sortBy = new SortBy(array);
 
   useEffect(() => {
-    resetArray();
+    regenerateArray();
   }, []);
 
-  const resetArray = () => {
+  const regenerateArray = () => {
     const tempArray = [];
 
     for (let i = 0; i < 450; i++) {
@@ -22,30 +24,30 @@ function Visualizer() {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   };
 
-  const bubbleSort = () => {
-    console.log('BUBBLE SORT')
+  const initializeBubbleSort = () => {
+    const animations = sortBy.bubbleSort();
   };
 
   return (
     <>
       <div className="navnar ">
-        <button className="btn btn-primary m-3"  onClick={resetArray}>
+        <button className="btn btn-primary m-3" onClick={regenerateArray}>
           Generate Array
         </button>
-        <button className="btn btn-primary" onClick={bubbleSort}>
+        <button className="btn btn-primary" onClick={initializeBubbleSort}>
           Bubble Sort
         </button>
-
       </div>
       <div className="wrapper">
         <div className="array-container">
-          {array.map((num, i) => (
-            <div
-              className="array-bar"
-              key={i}
-              style={{ height: `${num}px` }}
-            ></div>
-          ))}
+          {array &&
+            array.map((num, i) => (
+              <div
+                className="array-bar"
+                key={i}
+                style={{ height: `${num}px` }}
+              ></div>
+            ))}
         </div>
       </div>
     </>

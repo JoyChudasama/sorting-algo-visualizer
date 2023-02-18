@@ -25,6 +25,10 @@
         background-color: #fb8500;
         border-bottom-left-radius: 2px;
         border-bottom-right-radius: 2px;
+        
+        &.comparing{
+          background-color: red;
+        }
       }
     }
   }
