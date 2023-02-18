@@ -12,7 +12,7 @@ function Visualizer() {
     const tempArray = [];
 
     for (let i = 0; i < 450; i++) {
-      tempArray.push(getRandomNumber(45, 700));
+      tempArray.push(getRandomNumber(50, 700));
     }
 
     setArray(tempArray);
