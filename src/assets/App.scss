@@ -1,0 +1,28 @@
+.app {
+  overflow: hidden;
+  background-color: #023047;
+  width: 100vw;
+  height: 100vh;
+
+  .wrapper {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    position: relative;
+
+    .array-container {
+      display: flex;
+      gap: 1px;
+      justify-content: center;
+      align-items: start;
+      transform: rotate(180deg);
+      position: absolute;
+      bottom: 0;
+
+      .array-bar {
+        width: 3px;
+        background-color: #fb8500;
+      }
+    }
+  }
+}
