@@ -35,46 +35,23 @@ function Visualizer() {
       let comparingBar2 = arrayBars[comparing[1]];
       let swappingBar1 = swapping ? arrayBars[swapping[0]] : null;
       let swappingBar2 = swapping ? arrayBars[swapping[1]] : null;
+      const colorClass = swappingBar1 ? "swapping" : "did-not-swap";
 
       setTimeout(() => {
-        
-        comparingBar1.classList.add(`compared`);
-        comparingBar2.classList.add(`compared`);
-
-        comparingBar1.classList.add(`done`);
-        comparingBar2.classList.add(`done`);
+        comparingBar1.classList.add(`${colorClass}`);
+        comparingBar2.classList.add(`${colorClass}`);
 
         setTimeout(() => {
-          // swappingBar1 && comparingBar1.classList.remove(`compared`);
-          // swappingBar1 && comparingBar2.classList.remove(`compared`);
-
-          swappingBar1 && swappingBar1.classList.add(`swapped`);
-          swappingBar1 && swappingBar2.classList.add(`swapped`);
-         
-          swappingBar1 && swappingBar1.classList.add(`done`);
-          swappingBar1 && swappingBar2.classList.add(`done`);
-
           swappingBar1 &&
             ([swappingBar2.style.height, swappingBar1.style.height] = [
               swappingBar1.style.height,
               swappingBar2.style.height,
             ]);
-        }, i*500);
 
-        swappingBar1 && swappingBar1.classList.remove(`swapped`);
-        swappingBar1 && swappingBar2.classList.remove(`swapped`);
-
-        comparingBar1.classList.remove(`compared`);
-        comparingBar2.classList.remove(`compared`);
-        comparingBar1.classList.remove(`done`);
-        comparingBar2.classList.remove(`done`);
-      }, i*500);
-      
-      // swappingBar1 && comparingBar1.classList.add(`done`);
-      // swappingBar1 && comparingBar2.classList.add(`done`);
-
-      swappingBar1 && swappingBar1.classList.remove(`done`);
-      swappingBar1 && swappingBar2.classList.remove(`done`);
+          comparingBar1.classList.remove("did-not-swap", "swapping");
+          comparingBar2.classList.remove("did-not-swap", "swapping");
+        }, i);
+      }, i *100);
     }
   };
 
@@ -90,7 +67,7 @@ function Visualizer() {
       </div>
       <div className="wrapper">
         <div className="array-container">
-          {array &&
+          {
             array.map((num, i) => (
               <div
                 className="array-bar"

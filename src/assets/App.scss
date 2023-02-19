@@ -26,18 +26,12 @@
         border-bottom-right-radius: 5px;
         background-color: #fb8500;
 
-        &.compared {
+        &.did-not-swap {
           background-color: black;
-          // background-color: #219ebc;
         }
 
-        &.swapped {
+        &.swapping {
           background-color: white;
-          // background-color: #8ecae6;
-        }
-
-        &.done {
-          background-color: #cdfb00cb;
         }
       }
     }
