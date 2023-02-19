@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "../assets/App.scss";
 import SortBy from "../helper/SortBy";
+import { getArrayOfRandomValues } from "../helper/arrayHelper";
 
 function Visualizer() {
   const [array, setArray] = useState([]);
@@ -11,23 +12,17 @@ function Visualizer() {
   }, []);
 
   const regenerateArray = () => {
-    const tempArray = [];
-
-    for (let i = 0; i < 100; i++) {
-      tempArray.push(getRandomNumber(100, 700));
-    }
-
-    setArray(tempArray);
-  };
-
-  const getRandomNumber = (min, max) => {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
+    setArray(getArrayOfRandomValues());
   };
 
   const initializeBubbleSort = () => {
     const animations = sortBy.bubbleSort();
     const arrayBars = document.getElementsByClassName("array-bar");
 
+    applyBubbleSort(animations, arrayBars);
+  };
+
+  const applyBubbleSort = (animations, arrayBars) => {
     for (let i = 0; i < animations.length; i++) {
       const { comparing, swapping } = animations[i];
 
@@ -51,7 +46,7 @@ function Visualizer() {
           comparingBar1.classList.remove("did-not-swap", "swapping");
           comparingBar2.classList.remove("did-not-swap", "swapping");
         }, i);
-      }, i *100);
+      }, i * 100);
     }
   };
 
@@ -65,16 +60,16 @@ function Visualizer() {
           Bubble Sort
         </button>
       </div>
+      
       <div className="wrapper">
         <div className="array-container">
-          {
-            array.map((num, i) => (
-              <div
-                className="array-bar"
-                key={i}
-                style={{ height: `${num}px` }}
-              ></div>
-            ))}
+          {array.map((num, i) => (
+            <div
+              className="array-bar"
+              key={i}
+              style={{ height: `${num}px` }}
+            ></div>
+          ))}
         </div>
       </div>
     </>
