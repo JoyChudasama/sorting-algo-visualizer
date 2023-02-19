@@ -11,13 +11,14 @@ class SortBy {
     while (!isSorted) {
       isSorted = true;
 
-      for (let i = 0; i < this.array.length - 1 - counter; i++) {
+      //looping from the end because of array-container is rotated 180deg
+      for (let i = this.array.length - 1; i > 0 - counter; i--) {
         const animation = {};
         animation.comparing = [i, i + 1];
 
         //Using less than because of array-container is rotated 180deg
         if (this.array[i] < this.array[i + 1]) {
-            animation.swapping = [i, i + 1];
+          animation.swapping = [i, i + 1];
           this.swapGivenIndicesOfArray(i, i + 1);
           isSorted = false;
         }
