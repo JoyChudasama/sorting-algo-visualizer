@@ -26,15 +26,15 @@ function Visualizer() {
     for (let i = 0; i < animations.length; i++) {
       const { comparing, swapping } = animations[i];
 
-      let comparingBar1 = arrayBars[comparing[0]];
-      let comparingBar2 = arrayBars[comparing[1]];
-      let swappingBar1 = swapping ? arrayBars[swapping[0]] : null;
-      let swappingBar2 = swapping ? arrayBars[swapping[1]] : null;
+      const comparingBar1 = arrayBars[comparing[0]];
+      const comparingBar2 = arrayBars[comparing[1]];
+      const swappingBar1 = swapping ? arrayBars[swapping[0]] : null;
+      const swappingBar2 = swapping ? arrayBars[swapping[1]] : null;
       const colorClass = swappingBar1 ? "swapping" : "did-not-swap";
 
       setTimeout(() => {
-        comparingBar1.classList.add(`${colorClass}`);
-        comparingBar2.classList.add(`${colorClass}`);
+        comparingBar1 && comparingBar1.classList.add(`${colorClass}`);
+        comparingBar2 && comparingBar2.classList.add(`${colorClass}`);
 
         setTimeout(() => {
           swappingBar1 &&
@@ -43,10 +43,12 @@ function Visualizer() {
               swappingBar2.style.height,
             ]);
 
-          comparingBar1.classList.remove("did-not-swap", "swapping");
-          comparingBar2.classList.remove("did-not-swap", "swapping");
-        }, i);
-      }, i * 100);
+          comparingBar1 &&
+            comparingBar1.classList.remove("did-not-swap", "swapping");
+          comparingBar2 &&
+            comparingBar2.classList.remove("did-not-swap", "swapping");
+        }, i * (-5));
+      }, i * 10);
     }
   };
 
@@ -60,7 +62,7 @@ function Visualizer() {
           Bubble Sort
         </button>
       </div>
-      
+
       <div className="wrapper">
         <div className="array-container">
           {array.map((num, i) => (
