@@ -9,10 +9,11 @@
     display: flex;
     justify-content: center;
     position: relative;
+    overflow: hidden;
 
     .array-container {
       display: flex;
-      gap: 1px;
+      gap: 2px;
       justify-content: center;
       align-items: start;
       transform: rotate(180deg);
@@ -20,8 +21,18 @@
       bottom: 0;
 
       .array-bar {
-        width: 3px;
+        width: 10px;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
         background-color: #fb8500;
+
+        &.did-not-swap {
+          background-color: black;
+        }
+
+        &.swapping {
+          background-color: white;
+        }
       }
     }
   }
