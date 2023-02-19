@@ -13,7 +13,7 @@
 
     .array-container {
       display: flex;
-      gap: 1px;
+      gap: 2px;
       justify-content: center;
       align-items: start;
       transform: rotate(180deg);
@@ -21,13 +21,23 @@
       bottom: 0;
 
       .array-bar {
-        width: 3px;
+        width: 10px;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
         background-color: #fb8500;
-        border-bottom-left-radius: 2px;
-        border-bottom-right-radius: 2px;
-        
-        &.comparing{
-          background-color: red;
+
+        &.compared {
+          background-color: black;
+          // background-color: #219ebc;
+        }
+
+        &.swapped {
+          background-color: white;
+          // background-color: #8ecae6;
+        }
+
+        &.done {
+          background-color: #cdfb00cb;
         }
       }
     }

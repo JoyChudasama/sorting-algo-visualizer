@@ -5,23 +5,30 @@ class SortBy {
   }
 
   bubbleSort() {
-    let swaps = 0;
-    for (let i = 0; i < this.array.length; i++) {
-      
-      const animation = {};
-      animation.comparing = [i, i + 1];
+    let isSorted = false;
+    let counter = 0;
 
-      //Using less than because of array container is rotated 180deg
-      if (this.array[i] < this.array[i + 1]) {
-        animation.swapping = [i, i + 1];
-        this.swapGivenIndicesOfArray(i, i + 1);
-        swaps += 1;
+    while (!isSorted) {
+      isSorted = true;
+
+      for (let i = 0; i < this.array.length - 1 - counter; i++) {
+        const animation = {};
+        animation.comparing = [i, i + 1];
+
+        //Using less than because of array-container is rotated 180deg
+        if (this.array[i] < this.array[i + 1]) {
+            animation.swapping = [i, i + 1];
+          this.swapGivenIndicesOfArray(i, i + 1);
+          isSorted = false;
+        }
+
+        this.animationArray.push(animation);
       }
 
-      this.animationArray.push(animation);
+      counter += 1;
     }
 
-    return swaps === 0 ? this.animationArray : this.bubbleSort(this.array);
+    return this.animationArray;
   }
 
   swapGivenIndicesOfArray(idx1, idx2) {
