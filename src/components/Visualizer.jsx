@@ -2,10 +2,11 @@ import { useEffect, useState } from 'react';
 import '../assets/App.scss';
 import { getArrayOfRandomValues } from '../helper/arrayHelper';
 import BubbleSort from '../algorithms/BubbleSort';
-import quickSort from '../algorithms/QuickSort';
+import QuickSort from '../algorithms/QuickSort';
 
 function Visualizer() {
 	const [array, setArray] = useState([]);
+	const [arrayBars, setArrayBars] = useState([]);
 
 	useEffect(() => {
 		regenerateArray();
@@ -13,10 +14,12 @@ function Visualizer() {
 
 	const regenerateArray = () => {
 		setArray(getArrayOfRandomValues());
+
+		const arrayBars = document.getElementsByClassName('array-bar');
+		setArrayBars(arrayBars);
 	};
 
 	const initializeBubbleSort = () => {
-		const arrayBars = document.getElementsByClassName('array-bar');
 		const bubbleSort = new BubbleSort(array, arrayBars);
 
 		bubbleSort.sort();
@@ -24,15 +27,11 @@ function Visualizer() {
 	};
 
 	const initializeQuickSort = () => {
-		console.log(array);
-		const animations = quickSort(array);
-		console.log(animations);
-		const arrayBars = document.getElementsByClassName('array-bar');
+		const quickSort = new QuickSort(array, arrayBars);
 
-		applyQuickSort(animations, arrayBars);
+		quickSort.sort();
+		quickSort.applyQuickSort();
 	};
-
-	const applyQuickSort = (animations, arrayBars) => {};
 
 	return (
 		<>
