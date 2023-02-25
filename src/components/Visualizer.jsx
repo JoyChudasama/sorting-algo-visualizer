@@ -28,8 +28,7 @@ function Visualizer() {
 
 	const initializeQuickSort = () => {
 		const quickSort = new QuickSort(array, arrayBars);
-
-		quickSort.sort();
+		quickSort.sortBars();
 	};
 
 	return (
