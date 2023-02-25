@@ -47,7 +47,7 @@ export default class QuickSort {
 
 		this.arrayBars[pivotIdx].classList.add('swapping');
 		this.arrayBars[rightIdx].classList.add('swapping');
-		
+
 		this.arrayBars[pivotIdx].classList.remove('pivot');
 		
 		await this.swapGivenBarHeights(pivotIdx, rightIdx, pivotBarHeight, rightBarHeight);
@@ -70,7 +70,7 @@ export default class QuickSort {
 
 	async swapGivenBarHeights(bar1Idx, bar2Idx, bar1Height, bar2Height) {
 
-		await delay(50);
+		await delay();
 
 		this.arrayBars[bar1Idx].style.height = `${bar2Height}px`;
 		this.arrayBars[bar2Idx].style.height = `${bar1Height}px`;
