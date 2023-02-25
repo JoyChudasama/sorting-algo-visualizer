@@ -30,7 +30,6 @@ function Visualizer() {
 		const quickSort = new QuickSort(array, arrayBars);
 
 		quickSort.sort();
-		quickSort.applyQuickSort();
 	};
 
 	return (
