@@ -1,63 +1,56 @@
-import { swapGivenIndicesValuesOfArray } from '../helper/arrayHelper';
+import '../assets/BubbleSort.scss'
+import { delay } from '../helper/helperFunctions';
 
 export default class BubbleSort {
 	constructor(array, arrayBars) {
 		this.array = array;
-		this.animationsArray = new Array();
 		this.arrayBars = arrayBars;
 	}
 
-	sort() {
-		let isSorted = false;
-		let counter = 0;
-
-		while (!isSorted) {
-			isSorted = true;
-
-			for (let i = 0; i < this.array.length - 1 - counter; i++) {
-				const animation = {};
-				animation.comparing = [i, i + 1];
-
-				if (this.array[i] > this.array[i + 1]) {
-					animation.swapping = [i, i + 1];
-					swapGivenIndicesValuesOfArray(i, i + 1, this.array);
-					isSorted = false;
-				}
-
-				this.animationsArray.push(animation);
-			}
-
-			counter += 1;
-		}
+	async sortBars() {
+		this.sortBarsHelper(this.arrayBars);
 	}
 
-	applyBubbleSort() {
-		for (let i = 0; i < this.animationsArray.length; i++) {
-			const { comparing, swapping } = this.animationsArray[i];
+	async sortBarsHelper(arrayBars) {
+		let swaps = 0
 
-			const comparingBar1 = this.arrayBars[comparing[0]];
-			const comparingBar2 = this.arrayBars[comparing[1]];
-			const swappingBar1 = swapping ? this.arrayBars[swapping[0]] : null;
-			const swappingBar2 = swapping ? this.arrayBars[swapping[1]] : null;
-			const colorClass = swappingBar1 ? 'swapping' : 'did-not-swap';
+		for (let i = 0; i < arrayBars.length - 1; i++) {
 
-			setTimeout(() => {
-				comparingBar1 && comparingBar1.classList.add(`${colorClass}`);
-				comparingBar2 && comparingBar2.classList.add(`${colorClass}`);
+			arrayBars[i].classList.add('comparing')
+			arrayBars[i + 1].classList.add('comparing')
 
-				setTimeout(() => {
-					swappingBar1 &&
-						([swappingBar2.style.height, swappingBar1.style.height] = [
-							swappingBar1.style.height,
-							swappingBar2.style.height,
-						]);
+			await delay();
 
-					comparingBar1 &&
-						comparingBar1.classList.remove('did-not-swap', 'swapping');
-					comparingBar2 &&
-						comparingBar2.classList.remove('did-not-swap', 'swapping');
-				}, i * -5);
-			}, i * 10);
+			const bar1Height = this.getBarHeight(i);
+			const bar2Height = this.getBarHeight(i + 1);
+
+			if (bar1Height > bar2Height) {
+				arrayBars[i].classList.add('swapping')
+				arrayBars[i + 1].classList.add('swapping')
+
+				await this.swapGivenBarHeights(i, i + 1, bar1Height, bar2Height)
+
+				arrayBars[i].classList.remove('swapping');
+				arrayBars[i + 1].classList.remove('swapping');
+
+				swaps += 1
+			}
+
+			arrayBars[i].classList.remove('comparing');
+			arrayBars[i + 1].classList.remove('comparing');
 		}
+
+		swaps !== 0 && this.sortBars(arrayBars);
+	}
+
+	getBarHeight(idx) {
+		return parseInt(this.arrayBars[idx].style.height.slice('px'));
+	}
+
+	async swapGivenBarHeights(bar1Idx, bar2Idx, bar1Height, bar2Height) {
+
+		await delay();
+		this.arrayBars[bar1Idx].style.height = `${bar2Height}px`;
+		this.arrayBars[bar2Idx].style.height = `${bar1Height}px`;
 	}
 }

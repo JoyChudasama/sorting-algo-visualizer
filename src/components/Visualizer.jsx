@@ -21,9 +21,7 @@ function Visualizer() {
 
 	const initializeBubbleSort = () => {
 		const bubbleSort = new BubbleSort(array, arrayBars);
-
-		bubbleSort.sort();
-		bubbleSort.applyBubbleSort();
+		bubbleSort.sortBars();
 	};
 
 	const initializeQuickSort = () => {
