@@ -3,6 +3,7 @@ import '../assets/App.scss';
 import { getArrayOfRandomValues } from '../helper/arrayHelper';
 import BubbleSort from '../algorithms/BubbleSort';
 import QuickSort from '../algorithms/QuickSort';
+import SelectionSort from '../algorithms/SelectionSort';
 
 function Visualizer() {
 	const [array, setArray] = useState([]);
@@ -29,6 +30,11 @@ function Visualizer() {
 		quickSort.sortBars();
 	};
 
+	const initializeSelectionSort = () => {
+		const selectionSort = new SelectionSort(array, arrayBars);
+		selectionSort.sortBars();
+	};
+
 	return (
 		<>
 			<div className="navnar ">
@@ -40,6 +46,9 @@ function Visualizer() {
 				</button>
 				<button className="btn btn-primary m-3" onClick={initializeQuickSort}>
 					Quick Sort
+				</button>
+				<button className="btn btn-primary m-3" onClick={initializeSelectionSort}>
+					Selection Sort
 				</button>
 			</div>
 
