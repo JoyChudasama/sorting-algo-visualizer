@@ -4,6 +4,7 @@ import { getArrayOfRandomValues } from '../helper/arrayHelper';
 import BubbleSort from '../algorithms/BubbleSort';
 import QuickSort from '../algorithms/QuickSort';
 import SelectionSort from '../algorithms/SelectionSort';
+import InsertionSort from '../algorithms/InsertionSort';
 
 function Visualizer() {
 	const [array, setArray] = useState([]);
@@ -35,6 +36,11 @@ function Visualizer() {
 		selectionSort.sortBars();
 	};
 
+	const initializeInsertionSort = () => {
+		const insertionSort = new InsertionSort(array, arrayBars);
+		insertionSort.sortBars();
+	};
+
 	return (
 		<>
 			<div className="navnar ">
@@ -44,11 +50,14 @@ function Visualizer() {
 				<button className="btn btn-primary m-3" onClick={initializeBubbleSort}>
 					Bubble Sort
 				</button>
-				<button className="btn btn-primary m-3" onClick={initializeQuickSort}>
-					Quick Sort
-				</button>
 				<button className="btn btn-primary m-3" onClick={initializeSelectionSort}>
 					Selection Sort
+				</button>
+				<button className="btn btn-primary m-3" onClick={initializeInsertionSort}>
+					Insertion Sort
+				</button>
+				<button className="btn btn-primary m-3" onClick={initializeQuickSort}>
+					Quick Sort
 				</button>
 			</div>
 
